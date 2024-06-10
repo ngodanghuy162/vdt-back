@@ -1,24 +1,52 @@
 
-name: Push Docker Image to Docker Hub
+# name: Push Docker Image to Docker Hub
+
+# on:
+#     create:
+#     tags:
+#       - '*'
+  
+# jobs:
+#     release:
+#         runs-on: ubuntu-latest
+  
+#         steps:
+#         - uses: actions/checkout@v3
+  
+#         - name: Login to Docker Hub
+#           uses: docker/login-action@v3
+#           with:
+#             username: ${{ secrets.DOCKER_USERNAME }}
+#             password: ${{ secrets.DOCKER_PW }}
+  
+#         - name: Build and Push Docker images
+#           run: |
+#             cd /home/runner/work/vdt-back/vdt-back/back && docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image . && docker push ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image
+# name: Push Docker Image to Docker Hub
 
 on:
-    create:
+  create:
     tags:
-      - '*'
-  
+      - '*' 
+
 jobs:
-    release:
-        runs-on: ubuntu-latest
-  
-        steps:
-        - uses: actions/checkout@v3
-  
-        - name: Login to Docker Hub
-          uses: docker/login-action@v3
-          with:
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PW }}
-  
-        - name: Build and Push Docker images
-          run: |
-            cd /home/runner/work/vdt-back/vdt-back/back && docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image . && docker push ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PW }}
+
+      - name: Build and Push Docker images
+        run: |
+          TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/tags\///')
+          docker buildx build --platform linux/arm64,linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:${TAG_NAME} --push .
