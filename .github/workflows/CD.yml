@@ -21,7 +21,7 @@
   
 #         - name: Build and Push Docker images
 #           run: |
-#             cd /home/runner/work/vdt-back/vdt-back/back && docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image . && docker push ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image
+#             cd /home/runner/work/vdt-back/back && docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image . && docker push ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image
 # name: Push Docker Image to Docker Hub
 
 on:
