@@ -1,4 +1,4 @@
-# Default values for helm-chart.
+# Default values for helm.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -39,10 +39,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
-  port: 8080
-  targetPort: 8080
-  nodePort: 31111
+  type: ClusterIP
+  port: 80
 
 ingress:
   enabled: false
@@ -71,7 +69,6 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
 
 autoscaling:
   enabled: false
