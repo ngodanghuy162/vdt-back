@@ -1,28 +1,4 @@
 
-# name: Push Docker Image to Docker Hub
-
-# on:
-#     create:
-#     tags:
-#       - '*'
-  
-# jobs:
-#     release:
-#         runs-on: ubuntu-latest
-  
-#         steps:
-#         - uses: actions/checkout@v3
-  
-#         - name: Login to Docker Hub
-#           uses: docker/login-action@v3
-#           with:
-#             username: ${{ secrets.DOCKER_USERNAME }}
-#             password: ${{ secrets.DOCKER_PW }}
-  
-#         - name: Build and Push Docker images
-#           run: |
-#             cd /home/runner/work/vdt-back/back && docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image . && docker push ${{ secrets.DOCKER_USERNAME }}/midterm:backend_image
-# name: Push Docker Image to Docker Hub
 
 on:
   create:
@@ -50,3 +26,16 @@ jobs:
         run: |
           TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/tags\///') 
           cd /home/runner/work/vdt-back/vdt-back/back && docker buildx build --platform linux/arm64,linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/myrepo:${TAG_NAME} --push .
+
+      - name: Change config repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GENERAL }}
+        run: |
+          TAG_NAME=$(echo $GITHUB_REF | sed 's/refs\/tags\///') 
+          git config --global user.name "ngodanghuy162"
+          git config --global user.email 'ngohuy658@gmail.com'
+          git clone https://ngodanghuy162:${GITHUB_TOKEN}@github.com/ngodanghuy162/config-back.git
+          cd config-back && sed -i "s/tag: .*/tag: ${TAG_NAME}/" values.yaml
+          git add values.yaml
+          git commit -m 'Update image tag' || true
+          git push origin main
