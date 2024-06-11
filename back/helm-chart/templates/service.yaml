@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "helm-chart.fullname" . }}
+  name: {{ include "helm-chart-back.fullname" . }}
   labels:
-    {{- include "helm-chart.labels" . | nindent 4 }}
+    {{- include "helm-chart-back.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -11,4 +11,4 @@ spec:
       targetPort: 8080
       nodePort: {{ .Values.service.nodePort }}
   selector:
-    {{- include "helm-chart.selectorLabels" . | nindent 4 }}
+    {{- include "helm-chart-back.selectorLabels" . | nindent 4 }}
