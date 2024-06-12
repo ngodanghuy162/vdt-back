@@ -20,31 +20,31 @@
 //        this.userService = userService;
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:5500")
+//    @CrossOrigin(origins = "http://192.168.1.100:5500")
 //    @GetMapping("/")
 //    public String hello() {
 //        return "Hello";
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:5500")
+//    @CrossOrigin(origins = "http://192.168.1.100:5500")
 //    @GetMapping("/all")
 //    public List<UserModel> getAllUser() {
 //        return userService.getAllUser();
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:5500")
+//    @CrossOrigin(origins = "http://192.168.1.100:5500")
 //    @PostMapping("/create")
 //    public ResponseEntity<String> createUser(@RequestBody UserModel userModel) {
 //        return userService.addUser(userModel);
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:5500")
+//    @CrossOrigin(origins = "http://192.168.1.100:5500")
 //    @PutMapping("/update/{id}")
 //    public ResponseEntity<String> createUser(@PathVariable(name = "id") int id, @RequestBody UserModel userModel) {
 //        return userService.updateUser(id,userModel);
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:5500")
+//    @CrossOrigin(origins = "http://192.168.1.100:5500")
 //    @DeleteMapping("/delete/{id}")
 //    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") int id ) {
 //        return userService.deleteUser(id);
@@ -91,34 +91,34 @@ public class UserController {
         this.deleteUserTimer = meterRegistry.timer("user.delete.timer");
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://192.168.1.100:5500")
     @GetMapping("/")
     public String hello() {
         return "Hello";
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://192.168.1.100:5500")
     @GetMapping("/all")
     public List<UserModel> getAllUser() {
         getAllUserCounter.increment();
         return getAllUserTimer.record(() -> userService.getAllUser());
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://192.168.1.100:5500")
     @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody UserModel userModel) {
         createUserCounter.increment();
         return createUserTimer.record(() -> userService.addUser(userModel));
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://192.168.1.100:5500")
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateUser(@PathVariable(name = "id") int id, @RequestBody UserModel userModel) {
         updateUserCounter.increment();
         return updateUserTimer.record(() -> userService.updateUser(id, userModel));
     }
 
-    @CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://192.168.1.100:5500")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable(name = "id") int id) {
         deleteUserCounter.increment();
