@@ -20,6 +20,9 @@ public class OrderModel {
     private String note;
     private int total_price;
 
+    public OrderModel() {
+    }
+
     public OrderModel(int totalPrice) {
         total_price = totalPrice;
     }
