@@ -18,11 +18,13 @@ public class OrderModel {
     private boolean addMatcha;
     private boolean premiumMatcha;
     private String note;
+    private int total_price;
 
-    public OrderModel() {
+    public OrderModel(int totalPrice) {
+        total_price = totalPrice;
     }
 
-    public OrderModel(String name, String phone, String address, int matchaSuaBo, String linkFB, int matchaSuaHat, int matchaDua, boolean addMatcha, boolean premiumMatcha, String note) {
+    public OrderModel(String name, String phone, String address, int matchaSuaBo, String linkFB, int matchaSuaHat, int matchaDua, boolean addMatcha, boolean premiumMatcha, String note, int totalPrice) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -33,6 +35,15 @@ public class OrderModel {
         this.addMatcha = addMatcha;
         this.premiumMatcha = premiumMatcha;
         this.note = note;
+        total_price = totalPrice;
+    }
+
+    public int getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
     }
 
     public int getId() {
