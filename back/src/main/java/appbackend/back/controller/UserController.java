@@ -53,7 +53,7 @@ public class UserController {
 
 
 
-    @CrossOrigin(origins = "http://192.168.1.100:5500")
+    @CrossOrigin(origins = "http://52.221.204.55:5500")
     @GetMapping("/")
     public ResponseEntity<String> hello() {
         if (bucket.tryConsume(1)) {
@@ -63,7 +63,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://192.168.1.100:5500")
+    @CrossOrigin(origins = "http://52.221.204.55:5500")
     @GetMapping("/all")
     public ResponseEntity<Object> getAllUser() {
         if (bucket.tryConsume(1)) {
@@ -74,7 +74,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://192.168.1.100:5500")
+    @CrossOrigin(origins = "http://52.221.204.55:5500")
     @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody UserModel userModel) {
         if (bucket.tryConsume(1)) {
@@ -85,7 +85,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://192.168.1.100:5500")
+    @CrossOrigin(origins = "http://52.221.204.55:5500")
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateUser(@PathVariable(name = "id") int id, @RequestBody UserModel userModel) {
         if (bucket.tryConsume(1)) {
@@ -97,7 +97,7 @@ public class UserController {
     }
 
 
-    @CrossOrigin(origins = "http://192.168.1.100:5500")
+    @CrossOrigin(origins = "http://52.221.204.55:5500")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable(name = "id") int id) {
         if (bucket.tryConsume(1)) {
