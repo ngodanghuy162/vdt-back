@@ -26,12 +26,6 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(JwtFilter jwtFilter, AuthenticationProvider authenticationProvider, UserDetailsService userDetailsService) {
-        this.jwtFilter = jwtFilter;
-        this.authenticationProvider = authenticationProvider;
-        this.userDetailsService = userDetailsService;
-    }
-
     //loc request
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

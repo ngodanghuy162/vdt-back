@@ -5,7 +5,6 @@ package appbackend.back.Security;
 import appbackend.back.model.Account;
 import appbackend.back.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,14 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MyUserDetailsService implements UserDetailsService {
 
-
     private final AccountRepository accRepository;
-
-    @Autowired
-    public MyUserDetailsService(AccountRepository accRepository) {
-        this.accRepository = accRepository;
-    }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
