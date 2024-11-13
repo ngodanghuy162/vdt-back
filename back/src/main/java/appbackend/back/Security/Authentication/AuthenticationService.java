@@ -11,8 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static appbackend.back.Security.Authentication.AuthenticationResponse.*;
-
 @Service
 @RequiredArgsConstructor
 @Getter
@@ -23,13 +21,6 @@ public class AuthenticationService {
 
     private final MyUserDetailsService myUserDetailsService;
     private final AuthenticationManager authenticationManager;
-
-    public AuthenticationService(PasswordEncoder passwordEncoder, JwtService jwtService, MyUserDetailsService myUserDetailsService, AuthenticationManager authenticationManager) {
-        this.passwordEncoder = passwordEncoder;
-        this.jwtService = jwtService;
-        this.myUserDetailsService = myUserDetailsService;
-        this.authenticationManager = authenticationManager;
-    }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
