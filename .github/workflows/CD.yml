@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and Push Docker images
         run: |
-          TAG_NAME=final
+          TAG_NAME=back
           cd /home/runner/work/vdt-back/vdt-back/back && docker buildx build --platform linux/arm64,linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/myrepo:${TAG_NAME} --push .
 
 #      - name: Change config repo
