@@ -17,7 +17,7 @@ import java.util.Arrays;
     public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("*","http://192.168.1.21:5500"));
+        config.setAllowedOrigins(Arrays.asList("*","https://52.221.204.55/"));
         config.setAllowedMethods(Arrays.asList("*", "GET", "POST", "PUT", "DELETE", "OPTIONS"));
         source.registerCorsConfiguration("/**", config);
         return source;

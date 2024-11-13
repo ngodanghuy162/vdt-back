@@ -26,14 +26,23 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
+    public SecurityConfig(JwtFilter jwtFilter, AuthenticationProvider authenticationProvider, UserDetailsService userDetailsService) {
+        this.jwtFilter = jwtFilter;
+        this.authenticationProvider = authenticationProvider;
+        this.userDetailsService = userDetailsService;
+    }
+
     //loc request
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable()).authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/vdt/all").hasAnyAuthority("admin","user")
+                        .requestMatchers("/vdt/all").permitAll()
                         .requestMatchers("/vdt/create").hasAuthority("admin")
                         .requestMatchers("/vdt/update/**").hasAuthority("admin")
                         .requestMatchers("/vdt/delete/**").hasAuthority("admin")
+                        .requestMatchers("/order/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/order/all").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/order/create").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
                         .anyRequest().permitAll()
                 )
