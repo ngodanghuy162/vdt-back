@@ -1,5 +1,6 @@
 package appbackend.back.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,17 +8,51 @@ import jakarta.persistence.*;
 public class OrderModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @JsonProperty("name")
+    @Column(name = "name")
     private String name;
+
+    @JsonProperty("phone")
+    @Column(name = "phone")
     private String phone;
+
+    @JsonProperty("address")
+    @Column(name = "address")
     private String address;
+
+    @JsonProperty("linkfb")
+    @Column(name = "linkfb")
     private String linkFB;
+
+    @JsonProperty("matcha_sua_bo")
+    @Column(name = "matcha_sua_bo")
     private int matchaSuaBo;
+
+    @JsonProperty("matcha_sua_hat")
+    @Column(name = "matcha_sua_hat")
     private int matchaSuaHat;
+
+    @JsonProperty("matcha_dua")
+    @Column(name = "matcha_dua")
     private int matchaDua;
+
+    @JsonProperty("add_matcha")
+    @Column(name = "add_matcha")
     private boolean addMatcha;
+
+    @JsonProperty("premium_matcha")
+    @Column(name = "premium_matcha")
     private boolean premiumMatcha;
+
+    @JsonProperty("note")
+    @Column(name = "note")
     private String note;
+
+    @JsonProperty("total_price")
+    @Column(name = "total_price")
     private int total_price;
 
     public OrderModel() {
